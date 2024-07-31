@@ -1,10 +1,24 @@
 # Apple-mac-metal-GPU
 
-this is the method to activate Apple Metal GPU for training Machine Learning models. instad of CUDA Apple Metal has its own MPS GPU. 
+this is the method to activate Apple Metal GPU for training Machine Learning models. instad of CUDA Apple Metal has its own MPS GPU (Metal Performance Shaders)
+
+
+
+
+
 
 Code:
+
 import torch
 
-device = torch.device("mps" if torch.cuda.is_available() else "cpu")
+if torch.backends.mps.is_available():
 
-model.to(device)
+    print("MPS backend is available.")
+    
+else:
+
+    print("MPS backend is not available.")
+    
+device = torch.device("mps") if torch.backends.mps.is_available() else torch.device("cpu")
+
+print(device, "- Is now assigned to this device")
