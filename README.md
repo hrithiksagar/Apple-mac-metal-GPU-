@@ -4,5 +4,7 @@ this is the method to activate Apple Metal GPU for training Machine Learning mod
 
 Code:
 import torch
+
 device = torch.device("mps" if torch.cuda.is_available() else "cpu")
+
 model.to(device)
